@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Brain Games project"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "prompt>=0.4.1",
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -13,5 +15,23 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["brain_games"]
 
+[dependency-groups]
+dev = [
+    "ruff>=0.14.10",
+]
+
 [project.scripts]
 brain-games = "brain_games.scripts.brain_games:main"
+
+[tool.ruff]
+line-length = 79
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "D",      # docstring rules (пока не нужны)
+  "ANN",    # type hints
+  "COM812", # trailing comma
+    "T201",     # разрешаем print
+]
